@@ -30,7 +30,7 @@ def flatten_node(n):
 	elif isinstance(n, Add):
 		n.left = flatten_node(n.left)
 		n.right = flatten_node(n.right)
-		return Const(n.left.value + n.right.value) # as a flattened left and right node should be numerical Const
+		return n #Const(n.left.value + n.right.value) # as a flattened left and right node should be numerical Const
 	elif isinstance(n, UnarySub):
 		n.expr = flatten_node(n.expr)
 		return n # Const(-n.expr.value)
