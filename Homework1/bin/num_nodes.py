@@ -1,9 +1,9 @@
 from compiler.ast import *;
 
 def num_nodes(ast):
-	if isinstance(n, Module)
+	if isinstance(n, Module):
 		return 1 + num_nodes(n.node)
-	elif isinstance(n, Stmt)
+	elif isinstance(n, Stmt):
 		return sum([num_nodes(x) for x in n.nodes])
 	elif isinstance(n, Printnl):
 		return 1 + num_nodes(n.nodes[0])
@@ -23,5 +23,5 @@ def num_nodes(ast):
 		return 1 + num_nodes(n.expr)
 	elif isinstance(n, CallFunc):
 		return 1 + num_nodes(n.node)
-	else
+	else:
 		raise Exception('Error, Unrecognized AST Node!')

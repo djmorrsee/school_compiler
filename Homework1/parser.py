@@ -1,8 +1,10 @@
-from bin.djast import *
+from bin.load_source import *
+
+import compiler
+import compiler.ast
 
 def main():
-	num_nodes.num_nodes('')
-	print 'hello'
+	ast = compiler.parse("print - input() + input()")
 
 if __name__ == '__main__':
 	main()
