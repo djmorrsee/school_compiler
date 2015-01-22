@@ -4,6 +4,24 @@ from compiler.ast import *
 
 import os.path
 
+class flattened_ast ():
+	def __init__(self, root):
+		self.raw_ast = root
+		self.vars = {}
+		self.statements = []
+
+	def add_var(name):
+		pass
+	def add_statement(node):
+		pass
+	def process(n):
+		# Certain Nodes should be Extracted into statements
+		# Other nodes should be given variables instead of real nodes
+		if isinstance(n, Add):
+			
+		pass
+		
+
 def flatten_node(n):
 	if isinstance(n, Module):
 		n.node = flatten_node(n.node)
