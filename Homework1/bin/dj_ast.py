@@ -11,9 +11,6 @@ class Var():
 		self.mapping = '-' + str(4 * (index + 1)) + '(%ebp)'
 
 	def __repr__(self):
-		return str(self.name)
-
-	def stack_mapping(self):
 		return str(self.mapping)
 
 class Statement(object):
@@ -27,44 +24,49 @@ class Statement(object):
 class Assignment(Statement):
 	def __init__(self, store, val):
 		py_text = str(store) + ' = '  + str(val)
-		s_text = 'movl ' + str(val) + store.mapping	
+		s_text = 'movl ' + str(val) + ', %ecx\nmovl %ecx, ' + str(store)
+
 		super(Assignment, self).__init__(py_text, s_text)
 
 class Addition(Statement):
 	def __init__(self, store, val):
 		py_text = str (store) + ' = ' + str(store) + ' + ' + str(val)
-		s_text = 'addl ' + str(val) + store.mapping
+		s_text = 'movl ' + str(val) + ', %ecx\n'
+		s_text += 'addl %ecx,' + str(store)
 		super(Addition, self).__init__(py_text, s_text)
 
 class Negate(Statement):
 	def __init__(self, store):
 		py_text = str (store) + ' = ' + '-' + str(store)
-		s_text = 'negl ' + store.mapping
+		s_text = 'negl ' + str(store)
 		super(Negate, self).__init__(py_text, s_text)
 
 class Print(Statement):
 	def __init__(self, val):
 		py_text = 'print ' + str(val)
-		s_text = 'pushl ' + val.mapping + '\ncall print_int_nl\naddl $4, %esp'
+		s_text = 'pushl ' + str(val) + '\ncall print_int_nl\naddl $4, %esp'
 		super(Print, self).__init__(py_text, s_text)
 
 class Input(Statement):
 	def __init__(self, store):
 		py_text = str(store) + " = input()"
-		s_text = "call input\nmovl %eax, " + store.mapping()
+		s_text = "call input\nmovl %eax, " + str(store)
 		super(Input, self).__init__(py_text, s_text)
 
 class flattened_ast ():
 	def __init__(self, root):
 		self.raw_ast = root
-		self.vars = []
+		self.vars = {}
 		self.statements = []
 		self.process(self.raw_ast)
 
+	def add_var(self, name):
+		self.vars.update({name: Var(name, len(self.vars))})
+		return self.vars[name]
+
 	def add_tmp_var(self):
 		vn = "__tmp" + str(len(self.vars)) + "__"
-		self.vars.append(Var(vn, len(self.vars)))
-		return self.vars[-1]
+		return self.add_var(vn)
 
 	def add_stmt(self, stmt):
 		self.statements.append(stmt)
@@ -86,9 +88,9 @@ class flattened_ast ():
 				raise Exception ("AssName not after Assign!")
 			name = n.nodes[0].name;
 			if not name in self.vars:
-				self.vars.append(Var(name, len(self.vars)))
-						
-			self.add_stmt(Assignment(self.vars[, self.process(n.expr)))
+				self.add_var(name)
+			
+			self.add_stmt(Assignment(self.vars[name], self.process(n.expr)))
 
 			# Create new Var, assign process(expr) to it
 		elif isinstance (n, AssName): # Leaf and vars
@@ -96,11 +98,11 @@ class flattened_ast ():
 		elif isinstance(n, Discard):
 			self.process(n.expr)
 		elif isinstance(n, Const): # Leaf
-			return n.value
+			return '$' + str(hex(n.value))
 		elif isinstance(n, Name): # Leaf
 			if not n.name in self.vars:
 				raise Exception("Using Var Before Assignment!")
-			return str(n.name)
+			return self.vars[n.name]
 		elif isinstance(n, Add):
 			tmpv = self.add_tmp_var()
 			self.add_stmt(Assignment(tmpv, self.process(n.left)))

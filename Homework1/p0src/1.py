@@ -1,2 +1,1 @@
-x = 1 + 3
-print x
+print 1 + 3
