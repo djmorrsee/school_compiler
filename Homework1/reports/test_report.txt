@@ -1,68 +1,21 @@
 File: p0src/1.py
 Code: 
 
-5
+1 + 3
 
 AST: 
+  Module(
+    None,
+    Stmt(
+      Discard(
+        Add(
+          Const(1),
+          Const(3)
+        )
+      )
+    )
+  )
 
-Module(None, Stmt([Discard(Const(5))]))
-
-##########################
-
-File: p0src/2.py
-Code: 
-
-x = 5
-
-AST: 
-
-Module(None, Stmt([Assign([AssName('x', 'OP_ASSIGN')], Const(5))]))
-
-##########################
-
-File: p0src/3.py
-Code: 
-
-x = 5 + 3
-
-AST: 
-
-Module(None, Stmt([Assign([AssName('x', 'OP_ASSIGN')], Add((Const(5), Const(3))))]))
-
-##########################
-
-File: p0src/4.py
-Code: 
-
-x = 3 + input()
-
-AST: 
-
-Module(None, Stmt([Assign([AssName('x', 'OP_ASSIGN')], Add((Const(3), CallFunc(Name('input'), [], None, None))))]))
-
-##########################
-
-File: p0src/5.py
-Code: 
-
-x = 5 + input()
-print x
-
-AST: 
-
-Module(None, Stmt([Assign([AssName('x', 'OP_ASSIGN')], Add((Const(5), CallFunc(Name('input'), [], None, None)))), Printnl([Name('x')], None)]))
-
-##########################
-
-File: p0src/6.py
-Code: 
-
-x = 5 + input()
-print x
-
-AST: 
-
-Module(None, Stmt([Assign([AssName('x', 'OP_ASSIGN')], Add((Const(5), CallFunc(Name('input'), [], None, None)))), Printnl([Name('x')], None)]))
 
 ##########################
 

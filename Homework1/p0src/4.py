@@ -1,1 +1,2 @@
-x = 3 + input()
+x = input() + 3 + -input()
+print x

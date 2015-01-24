@@ -1,2 +1,3 @@
 x = 5 + input()
-print x
+y = input() + x
+print -x
