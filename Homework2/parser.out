@@ -1,0 +1,374 @@
+Created by PLY version 3.4 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> simple_statements
+Rule 1     simple_statements -> simple_statement
+Rule 2     simple_statements -> simple_statement simple_statements
+Rule 3     simple_statement -> expression
+Rule 4     simple_statement -> PRINT expression
+Rule 5     simple_statement -> NAME ASSIGNMENT expression
+Rule 6     expression -> NAME
+Rule 7     expression -> INT
+Rule 8     expression -> NEGATE expression
+Rule 9     expression -> expression PLUS expression
+Rule 10    expression -> INPUT LPARAN RPARAN
+Rule 11    expression -> LPARAN expression RPARAN
+
+Terminals, with rules where they appear
+
+ASSIGNMENT           : 5
+INPUT                : 10
+INT                  : 7
+LPARAN               : 10 11
+NAME                 : 5 6
+NEGATE               : 8
+PLUS                 : 9
+PRINT                : 4
+RPARAN               : 10 11
+error                : 
+
+Nonterminals, with rules where they appear
+
+expression           : 3 4 5 8 9 9 11
+simple_statement     : 1 2
+simple_statements    : 2 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . simple_statements
+    (1) simple_statements -> . simple_statement
+    (2) simple_statements -> . simple_statement simple_statements
+    (3) simple_statement -> . expression
+    (4) simple_statement -> . PRINT expression
+    (5) simple_statement -> . NAME ASSIGNMENT expression
+    (6) expression -> . NAME
+    (7) expression -> . INT
+    (8) expression -> . NEGATE expression
+    (9) expression -> . expression PLUS expression
+    (10) expression -> . INPUT LPARAN RPARAN
+    (11) expression -> . LPARAN expression RPARAN
+
+    PRINT           shift and go to state 7
+    NAME            shift and go to state 2
+    INT             shift and go to state 3
+    NEGATE          shift and go to state 5
+    INPUT           shift and go to state 8
+    LPARAN          shift and go to state 1
+
+    expression                     shift and go to state 9
+    simple_statement               shift and go to state 4
+    simple_statements              shift and go to state 6
+
+state 1
+
+    (11) expression -> LPARAN . expression RPARAN
+    (6) expression -> . NAME
+    (7) expression -> . INT
+    (8) expression -> . NEGATE expression
+    (9) expression -> . expression PLUS expression
+    (10) expression -> . INPUT LPARAN RPARAN
+    (11) expression -> . LPARAN expression RPARAN
+
+    NAME            shift and go to state 10
+    INT             shift and go to state 3
+    NEGATE          shift and go to state 5
+    INPUT           shift and go to state 8
+    LPARAN          shift and go to state 1
+
+    expression                     shift and go to state 11
+
+state 2
+
+    (5) simple_statement -> NAME . ASSIGNMENT expression
+    (6) expression -> NAME .
+
+    ASSIGNMENT      shift and go to state 12
+    PLUS            reduce using rule 6 (expression -> NAME .)
+    PRINT           reduce using rule 6 (expression -> NAME .)
+    NAME            reduce using rule 6 (expression -> NAME .)
+    INT             reduce using rule 6 (expression -> NAME .)
+    NEGATE          reduce using rule 6 (expression -> NAME .)
+    INPUT           reduce using rule 6 (expression -> NAME .)
+    LPARAN          reduce using rule 6 (expression -> NAME .)
+    $end            reduce using rule 6 (expression -> NAME .)
+
+
+state 3
+
+    (7) expression -> INT .
+
+    PLUS            reduce using rule 7 (expression -> INT .)
+    PRINT           reduce using rule 7 (expression -> INT .)
+    NAME            reduce using rule 7 (expression -> INT .)
+    INT             reduce using rule 7 (expression -> INT .)
+    NEGATE          reduce using rule 7 (expression -> INT .)
+    INPUT           reduce using rule 7 (expression -> INT .)
+    LPARAN          reduce using rule 7 (expression -> INT .)
+    $end            reduce using rule 7 (expression -> INT .)
+    RPARAN          reduce using rule 7 (expression -> INT .)
+
+
+state 4
+
+    (1) simple_statements -> simple_statement .
+    (2) simple_statements -> simple_statement . simple_statements
+    (1) simple_statements -> . simple_statement
+    (2) simple_statements -> . simple_statement simple_statements
+    (3) simple_statement -> . expression
+    (4) simple_statement -> . PRINT expression
+    (5) simple_statement -> . NAME ASSIGNMENT expression
+    (6) expression -> . NAME
+    (7) expression -> . INT
+    (8) expression -> . NEGATE expression
+    (9) expression -> . expression PLUS expression
+    (10) expression -> . INPUT LPARAN RPARAN
+    (11) expression -> . LPARAN expression RPARAN
+
+    $end            reduce using rule 1 (simple_statements -> simple_statement .)
+    PRINT           shift and go to state 7
+    NAME            shift and go to state 2
+    INT             shift and go to state 3
+    NEGATE          shift and go to state 5
+    INPUT           shift and go to state 8
+    LPARAN          shift and go to state 1
+
+    expression                     shift and go to state 9
+    simple_statement               shift and go to state 4
+    simple_statements              shift and go to state 13
+
+state 5
+
+    (8) expression -> NEGATE . expression
+    (6) expression -> . NAME
+    (7) expression -> . INT
+    (8) expression -> . NEGATE expression
+    (9) expression -> . expression PLUS expression
+    (10) expression -> . INPUT LPARAN RPARAN
+    (11) expression -> . LPARAN expression RPARAN
+
+    NAME            shift and go to state 10
+    INT             shift and go to state 3
+    NEGATE          shift and go to state 5
+    INPUT           shift and go to state 8
+    LPARAN          shift and go to state 1
+
+    expression                     shift and go to state 14
+
+state 6
+
+    (0) S' -> simple_statements .
+
+
+
+state 7
+
+    (4) simple_statement -> PRINT . expression
+    (6) expression -> . NAME
+    (7) expression -> . INT
+    (8) expression -> . NEGATE expression
+    (9) expression -> . expression PLUS expression
+    (10) expression -> . INPUT LPARAN RPARAN
+    (11) expression -> . LPARAN expression RPARAN
+
+    NAME            shift and go to state 10
+    INT             shift and go to state 3
+    NEGATE          shift and go to state 5
+    INPUT           shift and go to state 8
+    LPARAN          shift and go to state 1
+
+    expression                     shift and go to state 15
+
+state 8
+
+    (10) expression -> INPUT . LPARAN RPARAN
+
+    LPARAN          shift and go to state 16
+
+
+state 9
+
+    (3) simple_statement -> expression .
+    (9) expression -> expression . PLUS expression
+
+    PRINT           reduce using rule 3 (simple_statement -> expression .)
+    NAME            reduce using rule 3 (simple_statement -> expression .)
+    INT             reduce using rule 3 (simple_statement -> expression .)
+    NEGATE          reduce using rule 3 (simple_statement -> expression .)
+    INPUT           reduce using rule 3 (simple_statement -> expression .)
+    LPARAN          reduce using rule 3 (simple_statement -> expression .)
+    $end            reduce using rule 3 (simple_statement -> expression .)
+    PLUS            shift and go to state 17
+
+
+state 10
+
+    (6) expression -> NAME .
+
+    PLUS            reduce using rule 6 (expression -> NAME .)
+    PRINT           reduce using rule 6 (expression -> NAME .)
+    NAME            reduce using rule 6 (expression -> NAME .)
+    INT             reduce using rule 6 (expression -> NAME .)
+    NEGATE          reduce using rule 6 (expression -> NAME .)
+    INPUT           reduce using rule 6 (expression -> NAME .)
+    LPARAN          reduce using rule 6 (expression -> NAME .)
+    $end            reduce using rule 6 (expression -> NAME .)
+    RPARAN          reduce using rule 6 (expression -> NAME .)
+
+
+state 11
+
+    (11) expression -> LPARAN expression . RPARAN
+    (9) expression -> expression . PLUS expression
+
+    RPARAN          shift and go to state 18
+    PLUS            shift and go to state 17
+
+
+state 12
+
+    (5) simple_statement -> NAME ASSIGNMENT . expression
+    (6) expression -> . NAME
+    (7) expression -> . INT
+    (8) expression -> . NEGATE expression
+    (9) expression -> . expression PLUS expression
+    (10) expression -> . INPUT LPARAN RPARAN
+    (11) expression -> . LPARAN expression RPARAN
+
+    NAME            shift and go to state 10
+    INT             shift and go to state 3
+    NEGATE          shift and go to state 5
+    INPUT           shift and go to state 8
+    LPARAN          shift and go to state 1
+
+    expression                     shift and go to state 19
+
+state 13
+
+    (2) simple_statements -> simple_statement simple_statements .
+
+    $end            reduce using rule 2 (simple_statements -> simple_statement simple_statements .)
+
+
+state 14
+
+    (8) expression -> NEGATE expression .
+    (9) expression -> expression . PLUS expression
+
+    PRINT           reduce using rule 8 (expression -> NEGATE expression .)
+    NAME            reduce using rule 8 (expression -> NEGATE expression .)
+    INT             reduce using rule 8 (expression -> NEGATE expression .)
+    NEGATE          reduce using rule 8 (expression -> NEGATE expression .)
+    INPUT           reduce using rule 8 (expression -> NEGATE expression .)
+    LPARAN          reduce using rule 8 (expression -> NEGATE expression .)
+    $end            reduce using rule 8 (expression -> NEGATE expression .)
+    RPARAN          reduce using rule 8 (expression -> NEGATE expression .)
+    PLUS            shift and go to state 17
+
+  ! PLUS            [ reduce using rule 8 (expression -> NEGATE expression .) ]
+
+
+state 15
+
+    (4) simple_statement -> PRINT expression .
+    (9) expression -> expression . PLUS expression
+
+    PRINT           reduce using rule 4 (simple_statement -> PRINT expression .)
+    NAME            reduce using rule 4 (simple_statement -> PRINT expression .)
+    INT             reduce using rule 4 (simple_statement -> PRINT expression .)
+    NEGATE          reduce using rule 4 (simple_statement -> PRINT expression .)
+    INPUT           reduce using rule 4 (simple_statement -> PRINT expression .)
+    LPARAN          reduce using rule 4 (simple_statement -> PRINT expression .)
+    $end            reduce using rule 4 (simple_statement -> PRINT expression .)
+    PLUS            shift and go to state 17
+
+
+state 16
+
+    (10) expression -> INPUT LPARAN . RPARAN
+
+    RPARAN          shift and go to state 20
+
+
+state 17
+
+    (9) expression -> expression PLUS . expression
+    (6) expression -> . NAME
+    (7) expression -> . INT
+    (8) expression -> . NEGATE expression
+    (9) expression -> . expression PLUS expression
+    (10) expression -> . INPUT LPARAN RPARAN
+    (11) expression -> . LPARAN expression RPARAN
+
+    NAME            shift and go to state 10
+    INT             shift and go to state 3
+    NEGATE          shift and go to state 5
+    INPUT           shift and go to state 8
+    LPARAN          shift and go to state 1
+
+    expression                     shift and go to state 21
+
+state 18
+
+    (11) expression -> LPARAN expression RPARAN .
+
+    PLUS            reduce using rule 11 (expression -> LPARAN expression RPARAN .)
+    PRINT           reduce using rule 11 (expression -> LPARAN expression RPARAN .)
+    NAME            reduce using rule 11 (expression -> LPARAN expression RPARAN .)
+    INT             reduce using rule 11 (expression -> LPARAN expression RPARAN .)
+    NEGATE          reduce using rule 11 (expression -> LPARAN expression RPARAN .)
+    INPUT           reduce using rule 11 (expression -> LPARAN expression RPARAN .)
+    LPARAN          reduce using rule 11 (expression -> LPARAN expression RPARAN .)
+    $end            reduce using rule 11 (expression -> LPARAN expression RPARAN .)
+    RPARAN          reduce using rule 11 (expression -> LPARAN expression RPARAN .)
+
+
+state 19
+
+    (5) simple_statement -> NAME ASSIGNMENT expression .
+    (9) expression -> expression . PLUS expression
+
+    PRINT           reduce using rule 5 (simple_statement -> NAME ASSIGNMENT expression .)
+    NAME            reduce using rule 5 (simple_statement -> NAME ASSIGNMENT expression .)
+    INT             reduce using rule 5 (simple_statement -> NAME ASSIGNMENT expression .)
+    NEGATE          reduce using rule 5 (simple_statement -> NAME ASSIGNMENT expression .)
+    INPUT           reduce using rule 5 (simple_statement -> NAME ASSIGNMENT expression .)
+    LPARAN          reduce using rule 5 (simple_statement -> NAME ASSIGNMENT expression .)
+    $end            reduce using rule 5 (simple_statement -> NAME ASSIGNMENT expression .)
+    PLUS            shift and go to state 17
+
+
+state 20
+
+    (10) expression -> INPUT LPARAN RPARAN .
+
+    PLUS            reduce using rule 10 (expression -> INPUT LPARAN RPARAN .)
+    PRINT           reduce using rule 10 (expression -> INPUT LPARAN RPARAN .)
+    NAME            reduce using rule 10 (expression -> INPUT LPARAN RPARAN .)
+    INT             reduce using rule 10 (expression -> INPUT LPARAN RPARAN .)
+    NEGATE          reduce using rule 10 (expression -> INPUT LPARAN RPARAN .)
+    INPUT           reduce using rule 10 (expression -> INPUT LPARAN RPARAN .)
+    LPARAN          reduce using rule 10 (expression -> INPUT LPARAN RPARAN .)
+    $end            reduce using rule 10 (expression -> INPUT LPARAN RPARAN .)
+    RPARAN          reduce using rule 10 (expression -> INPUT LPARAN RPARAN .)
+
+
+state 21
+
+    (9) expression -> expression PLUS expression .
+    (9) expression -> expression . PLUS expression
+
+    PLUS            reduce using rule 9 (expression -> expression PLUS expression .)
+    PRINT           reduce using rule 9 (expression -> expression PLUS expression .)
+    NAME            reduce using rule 9 (expression -> expression PLUS expression .)
+    INT             reduce using rule 9 (expression -> expression PLUS expression .)
+    NEGATE          reduce using rule 9 (expression -> expression PLUS expression .)
+    INPUT           reduce using rule 9 (expression -> expression PLUS expression .)
+    LPARAN          reduce using rule 9 (expression -> expression PLUS expression .)
+    $end            reduce using rule 9 (expression -> expression PLUS expression .)
+    RPARAN          reduce using rule 9 (expression -> expression PLUS expression .)
+
+  ! PLUS            [ shift and go to state 17 ]
+
