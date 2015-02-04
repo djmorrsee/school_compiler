@@ -5,9 +5,9 @@ _tabversion = '3.2'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'k\xd2\xb2\x0e\xc0\xcf#I\x99coX+y\x92\x93'
+_lr_signature = '\x16\xe8\x81\x0b\xe9\x82\xc1E5\x8et\x11O^\xb5\n'
     
-_lr_action_items = {'LPARAN':([0,1,2,3,4,5,7,8,9,10,12,14,15,17,18,19,20,21,],[1,1,-6,-7,1,1,1,16,-3,-6,1,-8,-4,1,-11,-5,-10,-9,]),'NAME':([0,1,2,3,4,5,7,9,10,12,14,15,17,18,19,20,21,],[2,10,-6,-7,2,10,10,-3,-6,10,-8,-4,10,-11,-5,-10,-9,]),'INT':([0,1,2,3,4,5,7,9,10,12,14,15,17,18,19,20,21,],[3,3,-6,-7,3,3,3,-3,-6,3,-8,-4,3,-11,-5,-10,-9,]),'ASSIGNMENT':([2,],[12,]),'RPARAN':([3,10,11,14,16,18,20,21,],[-7,-6,18,-8,20,-11,-10,-9,]),'PRINT':([0,2,3,4,9,10,14,15,18,19,20,21,],[7,-6,-7,7,-3,-6,-8,-4,-11,-5,-10,-9,]),'PLUS':([2,3,9,10,11,14,15,18,19,20,21,],[-6,-7,17,-6,17,17,17,-11,17,-10,-9,]),'NEGATE':([0,1,2,3,4,5,7,9,10,12,14,15,17,18,19,20,21,],[5,5,-6,-7,5,5,5,-3,-6,5,-8,-4,5,-11,-5,-10,-9,]),'INPUT':([0,1,2,3,4,5,7,9,10,12,14,15,17,18,19,20,21,],[8,8,-6,-7,8,8,8,-3,-6,8,-8,-4,8,-11,-5,-10,-9,]),'$end':([2,3,4,6,9,10,13,14,15,18,19,20,21,],[-6,-7,-1,0,-3,-6,-2,-8,-4,-11,-5,-10,-9,]),}
+_lr_action_items = {'LPARAN':([0,1,2,3,4,5,7,8,9,10,12,14,15,17,18,19,20,21,],[1,1,-6,-7,1,1,1,16,-3,-6,1,-8,-4,1,-11,-5,-10,-9,]),'NAME':([0,1,2,3,4,5,7,9,10,12,14,15,17,18,19,20,21,],[2,10,-6,-7,2,10,10,-3,-6,10,-8,-4,10,-11,-5,-10,-9,]),'INT':([0,1,2,3,4,5,7,9,10,12,14,15,17,18,19,20,21,],[3,3,-6,-7,3,3,3,-3,-6,3,-8,-4,3,-11,-5,-10,-9,]),'ASSIGNMENT':([2,],[12,]),'RPARAN':([3,10,11,14,16,18,20,21,],[-7,-6,18,-8,20,-11,-10,-9,]),'PRINT':([0,2,3,4,9,10,14,15,18,19,20,21,],[7,-6,-7,7,-3,-6,-8,-4,-11,-5,-10,-9,]),'PLUS':([2,3,9,10,11,14,15,18,19,20,21,],[-6,-7,17,-6,17,-8,17,-11,17,-10,17,]),'NEGATE':([0,1,2,3,4,5,7,9,10,12,14,15,17,18,19,20,21,],[5,5,-6,-7,5,5,5,-3,-6,5,-8,-4,5,-11,-5,-10,-9,]),'INPUT':([0,1,2,3,4,5,7,9,10,12,14,15,17,18,19,20,21,],[8,8,-6,-7,8,8,8,-3,-6,8,-8,-4,8,-11,-5,-10,-9,]),'$end':([2,3,4,6,9,10,13,14,15,18,19,20,21,],[-6,-7,-1,0,-3,-6,-2,-8,-4,-11,-5,-10,-9,]),}
 
 _lr_action = { }
 for _k, _v in _lr_action_items.items():
@@ -26,15 +26,15 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> simple_statements","S'",1,None,None,None),
-  ('simple_statements -> simple_statement','simple_statements',1,'p_statement_recursion','/home/djmorrsee/Documents/school_compiler/Homework2/dj_lex.py',58),
-  ('simple_statements -> simple_statement simple_statements','simple_statements',2,'p_statement_recursion','/home/djmorrsee/Documents/school_compiler/Homework2/dj_lex.py',59),
-  ('simple_statement -> expression','simple_statement',1,'p_simple_statement','/home/djmorrsee/Documents/school_compiler/Homework2/dj_lex.py',63),
-  ('simple_statement -> PRINT expression','simple_statement',2,'p_print_statement','/home/djmorrsee/Documents/school_compiler/Homework2/dj_lex.py',67),
-  ('simple_statement -> NAME ASSIGNMENT expression','simple_statement',3,'p_assign_statement','/home/djmorrsee/Documents/school_compiler/Homework2/dj_lex.py',71),
-  ('expression -> NAME','expression',1,'p_name_expression','/home/djmorrsee/Documents/school_compiler/Homework2/dj_lex.py',75),
-  ('expression -> INT','expression',1,'p_integer_expression','/home/djmorrsee/Documents/school_compiler/Homework2/dj_lex.py',79),
-  ('expression -> NEGATE expression','expression',2,'p_negate_expression','/home/djmorrsee/Documents/school_compiler/Homework2/dj_lex.py',83),
-  ('expression -> expression PLUS expression','expression',3,'p_addition_expression','/home/djmorrsee/Documents/school_compiler/Homework2/dj_lex.py',87),
-  ('expression -> INPUT LPARAN RPARAN','expression',3,'p_input_expression','/home/djmorrsee/Documents/school_compiler/Homework2/dj_lex.py',91),
-  ('expression -> LPARAN expression RPARAN','expression',3,'p_paran_expression','/home/djmorrsee/Documents/school_compiler/Homework2/dj_lex.py',95),
+  ('simple_statements -> simple_statement','simple_statements',1,'p_statement_recursion','/home/djmorrsee/Documents/school_compiler/Homework2/dj_lex.py',59),
+  ('simple_statements -> simple_statement simple_statements','simple_statements',2,'p_statement_recursion','/home/djmorrsee/Documents/school_compiler/Homework2/dj_lex.py',60),
+  ('simple_statement -> expression','simple_statement',1,'p_simple_statement','/home/djmorrsee/Documents/school_compiler/Homework2/dj_lex.py',77),
+  ('simple_statement -> PRINT expression','simple_statement',2,'p_print_statement','/home/djmorrsee/Documents/school_compiler/Homework2/dj_lex.py',81),
+  ('simple_statement -> NAME ASSIGNMENT expression','simple_statement',3,'p_assign_statement','/home/djmorrsee/Documents/school_compiler/Homework2/dj_lex.py',85),
+  ('expression -> NAME','expression',1,'p_name_expression','/home/djmorrsee/Documents/school_compiler/Homework2/dj_lex.py',89),
+  ('expression -> INT','expression',1,'p_integer_expression','/home/djmorrsee/Documents/school_compiler/Homework2/dj_lex.py',93),
+  ('expression -> NEGATE expression','expression',2,'p_negate_expression','/home/djmorrsee/Documents/school_compiler/Homework2/dj_lex.py',97),
+  ('expression -> expression PLUS expression','expression',3,'p_addition_expression','/home/djmorrsee/Documents/school_compiler/Homework2/dj_lex.py',101),
+  ('expression -> INPUT LPARAN RPARAN','expression',3,'p_input_expression','/home/djmorrsee/Documents/school_compiler/Homework2/dj_lex.py',105),
+  ('expression -> LPARAN expression RPARAN','expression',3,'p_paran_expression','/home/djmorrsee/Documents/school_compiler/Homework2/dj_lex.py',109),
 ]

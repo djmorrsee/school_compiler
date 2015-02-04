@@ -257,6 +257,7 @@ state 14
     (8) expression -> NEGATE expression .
     (9) expression -> expression . PLUS expression
 
+    PLUS            reduce using rule 8 (expression -> NEGATE expression .)
     PRINT           reduce using rule 8 (expression -> NEGATE expression .)
     NAME            reduce using rule 8 (expression -> NEGATE expression .)
     INT             reduce using rule 8 (expression -> NEGATE expression .)
@@ -265,9 +266,8 @@ state 14
     LPARAN          reduce using rule 8 (expression -> NEGATE expression .)
     $end            reduce using rule 8 (expression -> NEGATE expression .)
     RPARAN          reduce using rule 8 (expression -> NEGATE expression .)
-    PLUS            shift and go to state 17
 
-  ! PLUS            [ reduce using rule 8 (expression -> NEGATE expression .) ]
+  ! PLUS            [ shift and go to state 17 ]
 
 
 state 15
@@ -360,7 +360,6 @@ state 21
     (9) expression -> expression PLUS expression .
     (9) expression -> expression . PLUS expression
 
-    PLUS            reduce using rule 9 (expression -> expression PLUS expression .)
     PRINT           reduce using rule 9 (expression -> expression PLUS expression .)
     NAME            reduce using rule 9 (expression -> expression PLUS expression .)
     INT             reduce using rule 9 (expression -> expression PLUS expression .)
@@ -369,6 +368,7 @@ state 21
     LPARAN          reduce using rule 9 (expression -> expression PLUS expression .)
     $end            reduce using rule 9 (expression -> expression PLUS expression .)
     RPARAN          reduce using rule 9 (expression -> expression PLUS expression .)
+    PLUS            shift and go to state 17
 
-  ! PLUS            [ shift and go to state 17 ]
+  ! PLUS            [ reduce using rule 9 (expression -> expression PLUS expression .) ]
 

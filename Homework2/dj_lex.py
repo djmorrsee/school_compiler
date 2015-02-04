@@ -43,23 +43,35 @@ import ply.lex as lex
 lexer = lex.lex()
 
 ## Parser
+from compiler.ast import *
 from compiler.ast import Printnl, Add, Const, Name, UnarySub
 from compiler.ast import CallFunc, Discard, AssName, Assign, Stmt
 from pprint import pprint
 import itertools
 
 precedence = (
-	('nonassoc', 'PRINT', 'NEGATE', 'NAME'),
-	('left', 'PLUS'),
-	('left', 'ASSIGNMENT'),
+	('nonassoc', 'PRINT', 'NAME'),
+	('right', 'PLUS', 'ASSIGNMENT'),
+	('left', 'NEGATE'),
 	)
 	
 def p_statement_recursion(t):
 	'''simple_statements : simple_statement 
 						 | simple_statement simple_statements'''
-	t[0] = []
-	t[0].append(t[1])	
+	if not t[0]:
+		t[0] = []
+	for i in t[1:]:
+		t[0].append(i)	
 		
+	## Hacky Flattening Cuz Weird Recursion
+	tmp = []
+	for i in t[0]:
+		if iter(i) and not isinstance(i, Node):
+			for j in i:
+				tmp.append(j)
+		else:
+			tmp.append(i)
+	t[0] = tmp	
 		
 def p_simple_statement(t):
 	'''simple_statement : expression'''
