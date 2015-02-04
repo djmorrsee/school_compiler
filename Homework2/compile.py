@@ -4,7 +4,8 @@ from bin.dj_test import *
 
 from pprint import pprint
 import compiler, sys, os;
-import dj_lex
+
+import bin.dj_lex as dj_lex
 
 def write_assembly(flat_ast, open_file):
 	vnum = len(flat_ast.vars)

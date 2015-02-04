@@ -8,7 +8,7 @@ OBJFILES=$(foreach i,$(seq 1 $SRC_NUM), p0src/$i.o)
 
 test_lexer:
 	echo $(SRCFILES)
-	python dj_lex_tester.py $(SRCFILES)
+	python bin/dj_lex_tester.py $(SRCFILES)
 	
 test_parser:
 
